@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <div style="border: 2px solid red; width: 50%; margin: 100px auto; height: 350px;text-align: center; background-color: antiquewhite;">
+        <h1>Check Your BMI</h1>
+        <p>Enter your wieght and height below to check your BMI results</p>
+        <p>Put your weight in here (KG)</p>
+        <input type="number" placeholder="Enter your weight in kg" id="weight">
+        <p>And your height in here (CM)</p>
+        <input type="number" placeholder="Enter your height in cm" id="height">
+        <br><br>
+        <button onclick="cal()">Calculate BMI</button>
+        <p id="display"></p>
+    </div>
+</body>
+</html>
+<script>
+    let display = document.getElementById('display')
+    function cal(){
+        const weight = parseFloat(document.getElementById('weight').value)
+        const height = (parseFloat(document.getElementById('height').value))/100
+
+        if (isNaN(weight) || isNaN(height)) {
+                display.textContent = "Please enter valid weight and height.";
+                return;
+            }
+
+            const bmi = (weight / (height * height)).toFixed(2);
+            console.log(bmi)
+            
+            if (bmi <= 18.4) {
+                //"Underweight"
+                display.innerText = "Your BMI is " + bmi + " which means You are Underweight"
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                //"Normal Weight"
+                display.innerText = "Your BMI is " + bmi + " which means You are Normal Weight"
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                // "Overweight"
+                display.innerText = "Your BMI is " + bmi + " which means You are Overweight";
+            } else if(bmi >= 30) {
+                // "Obese"
+                display.innerText = "Your BMI is " + bmi + " which means You are Obese";
+            }
+
+    }
+    
+</script>
